@@ -1,32 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DataTable from "../components/DataTable";
+import "./DataPage.css";
 
-const DataTable = ({ data }) => {
+const DataPage = () => {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/data/getAllData",
+        {
+          startDate,
+          endDate,
+        }
+      );
+      if (response.data.success) {
+        setData(response.data.data);
+      } else {
+        console.error("Error fetching data:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty dependency array to run only once on component mount
+
+  const handleSubmit = async () => {
+    fetchData();
+  };
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Temperature</th>
-          <th>Humidity</th>
-          <th>Moisture</th>
-          <th>Light</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item, index) => (
-          <tr key={index}>
-            <td>{item.date}</td>
-            <td>{item.time}</td>
-            <td>{item.temperature}</td>
-            <td>{item.humidity}</td>
-            <td>{item.moisture}</td>
-            <td>{item.light}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="container">
+      <h1 style={{ textAlign: "center" }}>Logs</h1>
+      <div className="form-group">
+        <label htmlFor="startDate">Start Date:</label>
+        <input
+          id="startDate"
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="endDate">End Date:</label>
+        <input
+          id="endDate"
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </div>
+      <button onClick={handleSubmit}>Submit</button>
+      <DataTable data={data} />
+    </div>
   );
 };
 
-export default DataTable;
+export default DataPage;

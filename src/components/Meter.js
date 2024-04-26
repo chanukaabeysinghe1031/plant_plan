@@ -23,7 +23,7 @@ const Meter = ({ label, value }) => {
           colorArray: ["#5BE12C", "#EA4228"],
           subArcs: [{ limit: 10 }, { limit: 30 }, {}, {}, {}],
           padding: 0.02,
-          width: 0.3,
+          width: 0.2,
         }}
         pointer={{
           elastic: true,

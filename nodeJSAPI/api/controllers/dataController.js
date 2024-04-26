@@ -56,3 +56,29 @@ exports.getLatestData = async (req, res) => {
     });
   }
 };
+
+exports.getAllData = async (req, res) => {
+  try {
+    const { startDate, endDate } = req.body;
+
+    let query = {};
+
+    // If both start and end dates are provided
+    if (startDate && endDate) {
+      query.timestamp = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    } else if (startDate) {
+      // If only start date is provided
+      query.timestamp = { $gte: new Date(startDate) };
+    } else if (endDate) {
+      // If only end date is provided
+      query.timestamp = { $lte: new Date(endDate) };
+    }
+
+    const data = await Data.find(query);
+
+    res.json({ success: true, data });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.json({ success: false, message: "Error fetching data" });
+  }
+};

@@ -8,18 +8,20 @@ const Navbar = () => {
         backgroundColor: "green",
         color: "white",
         padding: "10px",
+        height: "40px",
+        paddingTop: "20px",
       }}
     >
-      <Link style={{ color: "white", marginLeft: "10px" }} to="/">
+      <Link style={{ color: "white", marginLeft: "30px" }} to="/">
         Home
       </Link>
-      <Link style={{ color: "white", marginLeft: "10px" }} to="/data-table">
+      <Link style={{ color: "white", marginLeft: "30px" }} to="/data-table">
         Data Table
       </Link>
-      <Link style={{ color: "white", marginLeft: "10px" }} to="/about">
+      <Link style={{ color: "white", marginLeft: "30px" }} to="/about">
         About Us
       </Link>
-      <Link style={{ color: "white", marginLeft: "10px" }} to="/contact">
+      <Link style={{ color: "white", marginLeft: "30px" }} to="/contact">
         Contact
       </Link>
     </nav>
