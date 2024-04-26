@@ -5,7 +5,7 @@ const Meter = ({ label, value }) => {
   return (
     <div style={{ margin: "10px" }}>
       <GaugeComponent
-        value={50}
+        value={value}
         type="radial"
         labels={{
           tickLabels: {
@@ -30,6 +30,7 @@ const Meter = ({ label, value }) => {
           animationDelay: 100,
         }}
       />
+      <h3 style={{ textAlign: "center" }}>{label}</h3>
     </div>
   );
 };
