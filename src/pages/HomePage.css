@@ -1,0 +1,25 @@
+/* Define styles for larger screens */
+.container {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Define styles for smaller screens */
+  @media only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  /* Additional styling for individual meters */
+  .meter {
+    width: 100px; /* Adjust width as needed */
+    margin: 10px; /* Add spacing between meters */
+  }
+  
+  /* Define styles for the heading */
+  .heading {
+    text-align: center;
+  }
+  

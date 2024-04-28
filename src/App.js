@@ -9,9 +9,8 @@ import ContactPage from "./pages/ContactPage";
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" exact element={<HomePage />} />
         <Route path="/data-table" element={<DataTablePage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/contact" element={<ContactPage />} />
